@@ -9,7 +9,7 @@ interface PaginatedResponse {
     totalPages: number;
 }
 
-export const fetchNotes = async (page: number, query: string): Promise<PaginatedResponse> => {
+export const fetchNotes = async (page: number, query: string, tag?: string): Promise<PaginatedResponse> => {
      
     const response = await axios.get<PaginatedResponse>('/notes', {
         headers: {
@@ -19,6 +19,7 @@ export const fetchNotes = async (page: number, query: string): Promise<Paginated
             search: query.trim() !== "" ? query : undefined,
             page,
             perPage: 12,
+            tag: tag && tag !== 'All' ? tag : undefined, 
 
         }
         

@@ -22,16 +22,17 @@ interface FetchNotesResponse {
 
 interface NotesClientProps {
   initialData: FetchNotesResponse;
+  tag?: string;
 }
 
-const NotesClient = ({ initialData }: NotesClientProps) => {
+const NotesClient = ({ initialData, tag }: NotesClientProps) => {
   const [query, setQuery] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const { data } = useQuery({
-    queryKey: ['notes', query, currentPage],
-    queryFn: () => fetchNotes(currentPage, query),
+    queryKey: ['notes', query, currentPage, tag],
+    queryFn: () => fetchNotes(currentPage, query , tag),
     placeholderData: keepPreviousData,
     refetchOnMount: false,
     initialData,
