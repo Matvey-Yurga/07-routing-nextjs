@@ -1,7 +1,7 @@
 'use client';
 
 import { keepPreviousData, useQuery } from '@tanstack/react-query';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useDebouncedCallback } from 'use-debounce';
 
 import { fetchNotes } from '@/lib/api';
@@ -48,7 +48,9 @@ const NotesClient = ({ initialData, tag }: NotesClientProps) => {
     setQuery(value);
     setCurrentPage(1);
   }, 300);
-
+  useEffect(() => {
+  setCurrentPage(1);
+  }, [tag]);
   return (
     <div className={css.app}>
       <header className={css.toolbar}>
