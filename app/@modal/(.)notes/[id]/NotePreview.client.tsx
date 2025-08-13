@@ -3,7 +3,6 @@ import { fetchNoteById } from '@/lib/api';
 import { useQuery } from '@tanstack/react-query';
 import { useParams, useRouter } from 'next/navigation';
 import css from './NotePreview.module.css'
-import BackButton from '@/components/BackButton/BackButton';
 import Modal from '@/components/Modal/Modal';
 const NotePreview = () => {
     const router = useRouter();
@@ -23,8 +22,7 @@ const NotePreview = () => {
         <h2>{note.title}</h2>
       </div>
                 <p className={css.content}>{note.content}</p>
-                <p className={css.date}>{note.updatedAt}</p>
-                <BackButton>Back</BackButton>
+                <p className={css.date}>{note.createdAt}</p>
     </div>
 </div></Modal>
     );
